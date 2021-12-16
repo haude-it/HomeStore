@@ -6,19 +6,19 @@ import HomeKit
 
 @available(iOS 13.0, *)
 class HomeStore: NSObject, ObservableObject, HMHomeManagerDelegate {
-    @Published var homes: [HMHome] = []
-    @Published var primaryHomeRooms: [HMRoom] = []
-    @Published var primaryHome: HMHome?
+    @Published public var homes: [HMHome] = []
+    @Published public var primaryHomeRooms: [HMRoom] = []
+    @Published public var primaryHome: HMHome?
     
     private var manager: HMHomeManager!
     
-    @Published var accessoriesFor: (HMHome, HMRoom) -> [HMAccessory] = { h, r in
+    @Published public var accessoriesFor: (HMHome, HMRoom) -> [HMAccessory] = { h, r in
         return h.accessories.filter { a in
             a.room?.uniqueIdentifier == r.uniqueIdentifier
         }
     }
     
-    override init() {
+    public override init() {
         super.init()
         
         if(manager == nil) {
@@ -30,13 +30,13 @@ class HomeStore: NSObject, ObservableObject, HMHomeManagerDelegate {
         primaryHome = manager.primaryHome
     }
     
-    func homeManagerDidUpdateHomes(_ manager: HMHomeManager) {
+    internal func homeManagerDidUpdateHomes(_ manager: HMHomeManager) {
         homes = manager.homes
         primaryHome = manager.primaryHome
         primaryHomeRooms = manager.primaryHome!.rooms
     }
     
-    func addHome(withName: String, completionHandler: @escaping (HMHome?, Error?) -> Void) {
+    public func addHome(withName: String, completionHandler: @escaping (HMHome?, Error?) -> Void) {
         manager.addHome(withName: withName, completionHandler: completionHandler)
     }
     
