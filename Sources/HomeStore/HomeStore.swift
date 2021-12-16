@@ -5,7 +5,7 @@ import HomeKit
 #endif
 
 @available(iOS 13.0, *)
-class HomeStore: NSObject, ObservableObject, HMHomeManagerDelegate {
+public class HomeStore: NSObject, ObservableObject, HMHomeManagerDelegate {
     @Published var homes: [HMHome] = []
     @Published var primaryHomeRooms: [HMRoom] = []
     @Published var primaryHome: HMHome?
