@@ -9,6 +9,10 @@ class HomeStore: NSObject, ObservableObject, HMHomeManagerDelegate {
     @Published public var homes: [HMHome] = []
     @Published public var primaryHomeRooms: [HMRoom] = []
     @Published public var primaryHome: HMHome?
+public class HomeStore: NSObject, ObservableObject, HMHomeManagerDelegate {
+    @Published var homes: [HMHome] = []
+    @Published var primaryHomeRooms: [HMRoom] = []
+    @Published var primaryHome: HMHome?
     
     private var manager: HMHomeManager!
     
